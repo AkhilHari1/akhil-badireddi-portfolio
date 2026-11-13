@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[#f9f9f8] text-[#111111] antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    @apply bg-[#111111] text-[#f9f9f8];
+  }
+}
+
+@layer components {
+  .hairline {
+    border: 1px solid rgba(17, 17, 17, 0.14);
+  }
+
+  .mag-pill {
+    @apply relative inline-block overflow-hidden;
+  }
+
+  .cursor-dot {
+    @apply fixed w-2 h-2 rounded-full bg-[#111111] pointer-events-none z-[9999] mix-blend-difference transform translate-x-[-50%] translate-y-[-50%];
+  }
+
+  .cursor-label {
+    @apply fixed pointer-events-none z-[9998] transform translate-x-[-50%] translate-y-[-50%] opacity-0 transition-opacity duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
