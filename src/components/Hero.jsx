@@ -27,50 +27,50 @@ export default function Hero() {
     <section ref={containerRef} id="hero" className="relative z-10 pt-24 pb-32 px-6 md:pt-40 md:pb-40">
       <div className="max-w-7xl mx-auto">
         <LineReveal delay={0.1} className="mb-8">
-          <RevealLine className="hero-reveal font-mono text-xs tracking-widest uppercase text-[#555555] mb-2 block">
+          <RevealLine className="hero-reveal font-mono text-xs sm:text-[11px] md:text-xs tracking-widest uppercase text-[#555555] mb-2 block break-words">
             POWER APPS DEVELOPER // ENTERPRISE ARCHITECTURE
           </RevealLine>
         </LineReveal>
 
         <LineReveal delay={0.3} className="mb-6">
-          <RevealLine className="hero-reveal font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight text-balance">
+          <RevealLine className="hero-reveal font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight break-words">
             Akhil Dev Badireddi
           </RevealLine>
         </LineReveal>
 
-        <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-[#111111] bg-[#f9f9f8] border border-[#111111] px-3 py-1 mb-3">
+        <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest uppercase text-[#111111] bg-[#f9f9f8] border border-[#111111] px-3 py-1 mb-3 break-words">
           Power Platform Developer · Power Apps Developer · Associate Business Analyst
         </div>
         <LineReveal delay={0.5}>
-          <RevealLine className="hero-reveal text-lg md:text-xl text-[#555555] leading-relaxed max-w-2xl">
+          <RevealLine className="hero-reveal text-base sm:text-lg md:text-xl text-[#555555] leading-relaxed max-w-2xl break-words">
             Architecting high-scale enterprise low-code platforms — schema-adaptive PCF controls, automated telemetry
             systems, and business-process automation for enterprise operations.
           </RevealLine>
         </LineReveal>
 
-        <div className="mt-12 flex flex-wrap gap-4">
-          <MagneticPill className="bg-[#111111] text-[#f9f9f8] font-mono text-xs tracking-widest uppercase py-3 px-8 rounded-sm" href="mailto:akhilbadireddi@gmail.com">
+        <div className="mt-12 flex flex-wrap gap-3 sm:gap-4">
+          <MagneticPill className="bg-[#111111] text-[#f9f9f8] font-mono text-xs sm:text-sm tracking-widest uppercase py-2.5 sm:py-3 px-6 sm:px-8 rounded-sm" href="mailto:akhilbadireddi@gmail.com">
             CONTACT DIRECT
           </MagneticPill>
-          <MagneticPill className="border border-[#111111] text-[#111111] font-mono text-xs tracking-widest uppercase py-3 px-8 rounded-sm hover:bg-[#111111] hover:text-[#f9f9f8] transition-colors" href="#works">
+          <MagneticPill className="border border-[#111111] text-[#111111] font-mono text-xs sm:text-sm tracking-widest uppercase py-2.5 sm:py-3 px-6 sm:px-8 rounded-sm hover:bg-[#111111] hover:text-[#f9f9f8] transition-colors" href="#works">
             VIEW CASE FILES
           </MagneticPill>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[#111111]/20 flex items-baseline gap-4">
-          <div className="font-mono text-xs text-[#555555] uppercase tracking-tighter">LOCATION</div>
+        <div className="mt-16 pt-8 border-t border-[#111111]/20 flex flex-wrap items-baseline gap-2 sm:gap-4">
+          <div className="font-mono text-xs sm:text-sm text-[#555555] uppercase tracking-tighter w-full sm:w-auto">LOCATION</div>
           <div className="text-sm font-medium">Hyderabad, Telangana, India</div>
-          <div className="w-px h-4 bg-[#111111]/30 mx-2"></div>
-          <div className="font-mono text-xs text-[#555555] uppercase tracking-tighter">EMAIL</div>
-          <a href="mailto:akhilbadireddi@gmail.com" className="text-sm hover:underline transition-colors">akhilbadireddi@gmail.com</a>
-          <div className="w-px h-4 bg-[#111111]/30 mx-2"></div>
-          <div className="font-mono text-xs text-[#555555] uppercase tracking-tighter">LINKEDIN</div>
-          <a href="https://www.linkedin.com/in/akhil-badireddi-a9a756269" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline transition-colors flex items-center gap-1">
+          <div className="w-px h-4 bg-[#111111]/30 mx-2 sm:mx-3 hidden sm:block"></div>
+          <div className="font-mono text-xs sm:text-sm text-[#555555] uppercase tracking-tighter w-full sm:w-auto">EMAIL</div>
+          <a href="mailto:akhilbadireddi@gmail.com" className="text-sm hover:underline transition-colors break-words">akhilbadireddi@gmail.com</a>
+          <div className="w-px h-4 bg-[#111111]/30 mx-2 sm:mx-3 hidden sm:block"></div>
+          <div className="font-mono text-xs sm:text-sm text-[#555555] uppercase tracking-tighter w-full sm:w-auto">LINKEDIN</div>
+          <a href="https://www.linkedin.com/in/akhil-badireddi-a9a756269" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline transition-colors flex items-center gap-1 break-words">
             LinkedIn <ExternalLink className="w-3 h-3" />
           </a>
-          <div className="w-px h-4 bg-[#111111]/30 mx-2"></div>
-          <div className="font-mono text-xs text-[#555555] uppercase tracking-tighter">GITHUB</div>
-          <a href="https://github.com/AkhilHari1" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline transition-colors flex items-center gap-1">
+          <div className="w-px h-4 bg-[#111111]/30 mx-2 sm:mx-3 hidden sm:block"></div>
+          <div className="font-mono text-xs sm:text-sm text-[#555555] uppercase tracking-tighter w-full sm:w-auto">GITHUB</div>
+          <a href="https://github.com/AkhilHari1" target="_blank" rel="noopener noreferrer" className="text-sm hover:underline transition-colors flex items-center gap-1 break-words">
             GitHub <ExternalLink className="w-3 h-3" />
           </a>
         </div>
