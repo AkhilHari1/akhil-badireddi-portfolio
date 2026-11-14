@@ -24,7 +24,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={containerRef} id="hero" className="relative z-10 pt-24 pb-32 px-6 md:pt-40 md:pb-40 overflow-clip">
+    <section ref={containerRef} id="hero" className="relative z-10 pt-24 pb-32 px-6 md:pt-40 md:pb-40">
       <div className="max-w-7xl mx-auto">
         <LineReveal delay={0.1} className="mb-8">
           <RevealLine className="hero-reveal font-mono text-xs sm:text-[10px] md:text-xs tracking-widest uppercase text-[#555555] mb-2 block break-words">
@@ -33,12 +33,12 @@ export default function Hero() {
         </LineReveal>
 
         <LineReveal delay={0.3} className="mb-8">
-          <RevealLine className="hero-reveal font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight break-words max-w-[70ch]">
+          <RevealLine className="hero-reveal font-display text-base sm:text-lg md:text-xl lg:text-2xl font-bold tracking-tight leading-none break-words">
             Akhil Dev Badireddi
           </RevealLine>
         </LineReveal>
 
-        <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest uppercase text-[#111111] bg-[#f9f9f8] border border-[#111111] px-3 py-1 mb-8 break-words max-w-[60ch]">
+        <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs tracking-widest uppercase text-[#111111] bg-[#f9f9f8] border border-[#111111] px-3 py-1 mb-8 break-words leading-none">
           Power Platform Developer · Power Apps Developer · Associate Business Analyst
         </div>
         <LineReveal delay={0.5} className="mb-12">
