@@ -140,8 +140,7 @@ export function LineReveal({ children, className = '', delay = 0 }) {
   return (
     <div
       ref={ref}
-      className={`relative ${className}`}
-      style={{ overflow: 'visible' }}
+      className={`overflow-hidden relative ${className}`}
     >
       {children}
     </div>
