@@ -38,10 +38,13 @@ export default function Hero() {
           </RevealLine>
         </LineReveal>
 
+        <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-[#111111] bg-[#f9f9f8] border border-[#111111] px-3 py-1 mb-3">
+          Power Platform Developer · Power Apps Developer · Associate Business Analyst
+        </div>
         <LineReveal delay={0.5}>
           <RevealLine className="hero-reveal text-lg md:text-xl text-[#555555] leading-relaxed max-w-2xl">
-            Power Apps Developer — Architecting high-scale enterprise low-code platforms, schema-adaptive PCF controls,
-            and automated telemetry systems.
+            Architecting high-scale enterprise low-code platforms — schema-adaptive PCF controls, automated telemetry
+            systems, and business-process automation for enterprise operations.
           </RevealLine>
         </LineReveal>
 

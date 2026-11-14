@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Activity } from 'lucide-react'
 import { MagneticPill, LineReveal, RevealLine, ArchitecturalCursor } from './MotionPrimitives'
+import ArchitectureWalkthrough from './ArchitectureWalkthrough'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -139,6 +140,27 @@ const FILTERS = [
 export default function Works() {
   const [filter, setFilter] = useState('all')
   const [openProject, setOpenProject] = useState(null)
+  const [walkthroughProject, setWalkthroughProject] = useState(null)
+  const worksRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(worksRef.current.querySelectorAll('.work-reveal'), {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.25,
+        scrollTrigger: {
+          trigger: worksRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+      })
+    }, worksRef)
+
+    return () => ctx.revert()
+  }, [])
   const sectionRef = useRef(null)
 
   const filtered = filter === 'all'
@@ -190,10 +212,11 @@ export default function Works() {
               )
             })}
           </div>
-          <div className="grid gap-12 md:grid-cols-1 lg:grid-cols-1">
+          <div ref={worksRef} className="grid gap-12 md:grid-cols-1 lg:grid-cols-1">
             {filtered.map((project) => (
               <div
                 key={project.id}
+                id={`work-${project.id}`}
                 className="work-reveal group relative border-b border-[#111111]/10 pb-12 last:border-none last:pb-0"
               >
                 <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -227,6 +250,15 @@ export default function Works() {
                     <button onClick={() => setOpenProject(project)} className="font-mono text-xs tracking-widest uppercase text-[#111111] flex items-center gap-2 hover:text-[#555555] transition-colors">
                       Inspect Architecture <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
                     </button>
+                    <button
+                      onClick={() => {
+                        setWalkthroughProject(project)
+                        setOpenProject(project)
+                      }}
+                      className="font-mono text-xs tracking-widest uppercase text-[#555555] flex items-center gap-2 hover:text-[#111111] transition-colors"
+                    >
+                      View How It Works <Activity className="w-3 h-3" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -238,12 +270,16 @@ export default function Works() {
       {openProject && (
         <div className="fixed inset-0 z-50 bg-[#f9f9f8]/90 backdrop-blur-sm" onClick={() => setOpenProject(null)}>
           <div className="absolute top-6 right-6 z-51">
-            <button onClick={() => setOpenProject(null)} className="w-8 h-8 rounded-full hairline flex items-center justify-center hover:bg-[#111111] hover:text-[#f9f9f8] transition-colors">
+            <button onClick={() => { setOpenProject(null); setWalkthroughProject(null) }} className="w-8 h-8 rounded-full hairline flex items-center justify-center hover:bg-[#111111] hover:text-[#f9f9f8] transition-colors">
               <span className="text-[10px]">×</span>
             </button>
           </div>
           <div className="max-w-4xl mx-auto h-full pt-16 pb-12 px-6 overflow-y-auto">
-            <div className="flex items-baseline gap-3 mb-6">
+            {walkthroughProject ? (
+              <ArchitectureWalkthrough project={walkthroughProject} onClose={() => setWalkthroughProject(null)} />
+            ) : (
+              <>
+                <div className="flex items-baseline gap-3 mb-6">
               <span className="font-display text-2xl font-bold tracking-tight">{openProject.index}</span>
               <span className="font-mono text-xs tracking-widest uppercase text-[#555555]">{openProject.category}</span>
             </div>
@@ -271,11 +307,27 @@ export default function Works() {
                 </ul>
               </div>
             </div>
-            <div className="mt-10 flex flex-wrap gap-2">
-              {openProject.stack.map((tech) => (
-                <span key={tech} className="font-mono text-[11px] text-[#111111] border border-[#111111] px-3 py-1.5 rounded-sm">{tech}</span>
-              ))}
-            </div>
+              <div className="mt-10 hairline p-6 flex items-center justify-between">
+                <div>
+                  <h4 className="font-mono text-xs tracking-widest uppercase text-[#555555] mb-1">Animated Walkthrough</h4>
+                  <p className="text-[#555555] text-sm leading-relaxed">
+                    Interactive step-by-step visual explainer of how the system works end-to-end.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setWalkthroughProject(openProject)}
+                  className="font-mono text-xs tracking-widest uppercase text-[#111111] flex items-center gap-2 hover:text-[#555555] transition-colors"
+                >
+                  View How It Works <ChevronRight className="w-3 h-3" />
+                </button>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-2">
+                {openProject.stack.map((tech) => (
+                  <span key={tech} className="font-mono text-[11px] text-[#111111] border border-[#111111] px-3 py-1.5 rounded-sm">{tech}</span>
+                ))}
+              </div>
+              </>
+            )}
           </div>
         </div>
       )}
