@@ -276,7 +276,7 @@ export default function ArchitectureWalkthrough({ project, onClose }) {
             <path
               key={i}
               className="walk-edge"
-              dataset-id={`${edge.from}-${edge.to}`}
+              data-id={`${edge.from}-${edge.to}`}
               d={edge.d}
               fill="none"
               stroke="#111111"
@@ -291,7 +291,7 @@ export default function ArchitectureWalkthrough({ project, onClose }) {
             const isSource = node.type === 'source'
             const isSink = node.type === 'sink'
             return (
-              <g key={node.id} className="walk-node" dataset-id={node.id} style={{ cursor: 'default' }}>
+              <g key={node.id} className="walk-node" data-id={node.id} style={{ cursor: 'default' }}>
                 <circle
                   cx={node.x}
                   cy={node.y}

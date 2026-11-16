@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ChevronRight } from 'lucide-react'
-import { LineReveal, RevealLine } from './MotionPrimitives'
+import { LineReveal, RevealLine, Card3DTilt } from './MotionPrimitives'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -58,17 +58,21 @@ export default function Index() {
   const sectionRef = useRef(null)
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
     const ctx = gsap.context(() => {
       gsap.from(sectionRef.current.querySelectorAll('.index-reveal'), {
         y: 40,
         opacity: 0,
         duration: 0.8,
         ease: 'power3.out',
-        stagger: 0.12,
+        stagger: 0.1,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          toggleActions: 'play none none none',
         },
       })
     }, sectionRef)
@@ -80,47 +84,58 @@ export default function Index() {
     <section
       ref={sectionRef}
       id="index"
-      className="relative z-10 pt-24 pb-32 px-6 md:pt-32 md:pb-40 border-y border-[#111111]/10"
+      aria-labelledby="index-heading"
+      className="relative z-10 pt-20 pb-28 px-4 sm:px-6 md:pt-32 md:pb-40 border-y border-[#111111]/10 bg-[#f9f9f8]/80 backdrop-blur-sm"
     >
       <div className="max-w-7xl mx-auto">
         <LineReveal className="mb-2">
           <RevealLine className="index-reveal font-mono text-xs tracking-widest uppercase text-[#555555] block">
-            CASE-FILE INDEX
+            PORTFOLIO OVERVIEW
           </RevealLine>
         </LineReveal>
 
-        <LineReveal className="mb-16">
-          <RevealLine className="index-reveal font-display text-4xl md:text-5xl font-bold tracking-tight">
-            All Case Files
-          </RevealLine>
+        <LineReveal className="mb-12 sm:mb-16">
+          <h2 id="index-heading" className="index-reveal font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+            Case-File Index
+          </h2>
         </LineReveal>
 
-        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 card-3d-wrap">
           {CASE_FILES.map((file) => (
-            <a
-              key={file.index}
-              href={`#${file.anchor}`}
-              className="index-reveal group hairline p-6 flex flex-col justify-between hover:bg-[#111111]/3 transition-colors"
-            >
-              <div className="flex items-baseline gap-4 mb-4">
-                <span className="font-display text-3xl font-bold tracking-tighter text-[#111111]/10 group-hover:text-[#111111]/30 transition-colors">
-                  {file.index}
-                </span>
-                <span className={file.badge ? 'font-mono text-[10px] uppercase tracking-tighter text-[#111111] bg-[#f9f9f8] px-2 py-0.5 hairline' : ''}>
-                  {file.badge}
-                </span>
-              </div>
-              <h3 className="font-display text-xl md:text-2xl font-bold tracking-tight group-hover:text-[#111111] transition-colors mb-2">
-                {file.title}
-              </h3>
-              <div className="font-mono text-[10px] tracking-widest uppercase text-[#555555] mb-2">
-                {file.category}
-              </div>
-              <p className="text-[#555555] text-sm leading-relaxed mb-6 flex-1">{file.oneLiner}</p>
-              <div className="font-mono text-xs tracking-widest uppercase text-[#111111] flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
-                View Case File <ChevronRight className="w-3 h-3" />
-              </div>
-            </a>
+            <Card3DTilt key={file.index} intensity={8}>
+              <a
+                href={`#${file.anchor}`}
+                data-cursor="INSPECT"
+                className="index-reveal group hairline p-6 sm:p-8 flex flex-col justify-between h-full bg-[#f9f9f8] hover:bg-[#111111]/[0.02] transition-colors rounded-sm shadow-sm focus-visible:outline-none"
+              >
+                <div>
+                  <div className="flex items-baseline justify-between mb-4">
+                    <span className="font-display text-3xl sm:text-4xl font-bold tracking-tighter text-[#111111]/15 group-hover:text-[#111111]/40 transition-colors">
+                      {file.index}
+                    </span>
+                    {file.badge && (
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-[#111111] bg-[#111111]/5 px-2.5 py-1 rounded-sm hairline">
+                        {file.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="font-mono text-[10px] sm:text-xs tracking-widest uppercase text-[#555555] mb-2">
+                    {file.category}
+                  </div>
+                  <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold tracking-tight group-hover:text-[#111111] transition-colors mb-3">
+                    {file.title}
+                  </h3>
+                  <p className="text-[#555555] text-sm leading-relaxed mb-6">
+                    {file.oneLiner}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-[#111111]/10 flex items-center justify-between font-mono text-xs tracking-widest uppercase text-[#111111]">
+                  <span>Inspect Case File</span>
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+                </div>
+              </a>
+            </Card3DTilt>
           ))}
         </div>
       </div>
